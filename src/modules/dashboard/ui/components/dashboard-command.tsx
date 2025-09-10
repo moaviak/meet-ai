@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 import {
-  CommandDialog,
+  CommandResponsiveDialog as CommandDialog,
   CommandInput,
   CommandItem,
   CommandList,
