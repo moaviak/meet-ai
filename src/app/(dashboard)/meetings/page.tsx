@@ -11,6 +11,7 @@ import {
   MeetingsViewLoading,
 } from "@/modules/meetings/ui/view/meetings-view";
 import { getQueryClient, trpc } from "@/trpc/server";
+import { MeetingsListHeader } from "@/modules/meetings/ui/components/meetings-list-header";
 
 const Page = async () => {
   const session = await auth.api.getSession({
@@ -25,13 +26,16 @@ const Page = async () => {
   void queryClient.prefetchQuery(trpc.meetings.getMany.queryOptions({}));
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <Suspense fallback={<MeetingsViewLoading />}>
-        <ErrorBoundary fallback={<MeetingsViewError />}>
-          <MeetingsView />
-        </ErrorBoundary>
-      </Suspense>
-    </HydrationBoundary>
+    <>
+      <MeetingsListHeader />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <Suspense fallback={<MeetingsViewLoading />}>
+          <ErrorBoundary fallback={<MeetingsViewError />}>
+            <MeetingsView />
+          </ErrorBoundary>
+        </Suspense>
+      </HydrationBoundary>
+    </>
   );
 };
 
