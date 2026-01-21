@@ -6,6 +6,10 @@ import uvicorn
 
 from agent import start_agent_for_call
 
+#------------------------------------------------------------------------------------
+# Start the server with: uvicorn server:app --host 0.0.0.0 --port 8000 --reload
+#------------------------------------------------------------------------------------
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
